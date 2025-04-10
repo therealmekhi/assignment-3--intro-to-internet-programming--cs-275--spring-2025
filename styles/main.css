@@ -1,0 +1,144 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  overflow: hidden;
+}
+
+/* Navigation + Triggers */
+nav,
+header {
+  background: #333;
+  color: white;
+  padding: 1rem;
+}
+
+nav ul,
+#js-triggers {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+}
+
+nav ul ul {
+  display: none;
+}
+
+#js-triggers li a {
+  color: white;
+  text-decoration: none;
+}
+
+#js-triggers {
+  z-index: 10;
+  position: relative;
+}
+
+/* Drop-down menu */
+.dropdown {
+  position: absolute;
+  top: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: white;
+  width: 200px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height .5s ease;
+  z-index: 5;
+}
+
+.dropdown.show {
+  max-height: 300px;
+}
+
+.dropdown ul {
+  list-style: none;
+}
+
+.dropdown li {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.dropdown li:last-child {
+  border-bottom: none;
+}
+
+.dropdown a {
+  text-decoration: none;
+  color: #333;
+}
+
+/* Side Tray */
+.side-tray {
+  position: fixed;
+  top: 0;
+  left: -250px;
+  width: 250px;
+  height: 100vh;
+  background-color: #444;
+  color: white;
+  transition: left .5s ease;
+  padding: 2rem 1rem;
+  z-index: 5;
+}
+
+.side-tray.show {
+  left: 0;
+}
+
+.side-tray ul {
+  list-style: none;
+}
+
+.side-tray li {
+  margin-bottom: 1rem;
+}
+
+.side-tray a {
+  text-decoration: none;
+  color: white;
+}
+
+/* Modal Overlay */
+.modal-panel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, .7);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-panel.show {
+  display: flex;
+}
+
+.modal-content-pane {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  transform: scale(.95);
+  transition: transform .5s ease;
+}
+
+.modal-panel.show .modal-content-pane {
+  transform: scale(1);
+}
+
+/* Main content layout */
+main {
+  padding: 2rem;
+  height: calc(100vh - 140px);
+  overflow-y: auto;
+}
