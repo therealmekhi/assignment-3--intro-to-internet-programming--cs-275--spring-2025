@@ -1,91 +1,78 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 body {
   font-family: sans-serif;
   overflow: hidden;
+  margin: 0;
+  padding: 0;
 }
 
-/* Navigation + Triggers */
-nav,
-header {
-  background: #333;
+#js-triggers a {
+  text-decoration: none;
+  color: white;
+}
+
+header,
+nav {
+  background-color: #333;
   color: white;
   padding: 1rem;
 }
 
-nav ul,
 #js-triggers {
   list-style: none;
   display: flex;
-  gap: 1rem;
-}
-
-nav ul ul {
-  display: none;
-}
-
-#js-triggers li a {
-  color: white;
-  text-decoration: none;
-}
-
-#js-triggers {
-  z-index: 10;
+  gap: 2rem;
   position: relative;
+  z-index: 10;
 }
 
-/* Drop-down menu */
-.dropdown {
+/* Drop-down */
+.dropdown-wrapper {
   position: absolute;
   top: 70px;
   left: 50%;
   transform: translateX(-50%);
-  background-color: white;
-  width: 200px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, .2);
-  overflow: hidden;
+  width: 300px;
+  background: white;
+  border: 1px solid #ccc;
+  opacity: 0;
   max-height: 0;
-  transition: max-height .5s ease;
+  overflow: hidden;
+  transition: opacity .5s ease, max-height .5s ease;
   z-index: 5;
 }
 
-.dropdown.show {
-  max-height: 300px;
+.dropdown-wrapper.show {
+  opacity: 1;
+  max-height: 400px;
 }
 
-.dropdown ul {
+.dropdown-wrapper ul {
   list-style: none;
+  padding: 0;
 }
 
-.dropdown li {
+.dropdown-wrapper li {
+  border-bottom: 1px solid #eee;
+}
+
+.dropdown-wrapper li a {
+  display: block;
   padding: 10px;
-  border-bottom: 1px solid #ccc;
-}
-
-.dropdown li:last-child {
-  border-bottom: none;
-}
-
-.dropdown a {
   text-decoration: none;
   color: #333;
 }
 
-/* Side Tray */
+/* Side tray */
 .side-tray {
   position: fixed;
   top: 0;
   left: -250px;
   width: 250px;
-  height: 100vh;
-  background-color: #444;
+  height: 100%;
+  background: #444;
   color: white;
+  overflow-y: auto;
   transition: left .5s ease;
-  padding: 2rem 1rem;
   z-index: 5;
 }
 
@@ -97,26 +84,25 @@ nav ul ul {
   list-style: none;
 }
 
-.side-tray li {
-  margin-bottom: 1rem;
-}
-
-.side-tray a {
+.side-tray li a {
+  display: block;
+  padding: 15px;
   text-decoration: none;
   color: white;
+  border-bottom: 1px solid #555;
 }
 
-/* Modal Overlay */
+/* Modal */
 .modal-panel {
+  display: none;
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, .7);
-  display: none;
-  align-items: center;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, .75);
   justify-content: center;
+  align-items: center;
   z-index: 1000;
 }
 
@@ -125,10 +111,10 @@ nav ul ul {
 }
 
 .modal-content-pane {
-  background-color: white;
+  background: white;
   padding: 2rem;
-  border-radius: 8px;
-  transform: scale(.95);
+  border-radius: 10px;
+  transform: scale(.9);
   transition: transform .5s ease;
 }
 
@@ -136,9 +122,9 @@ nav ul ul {
   transform: scale(1);
 }
 
-/* Main content layout */
+/* Layout control */
 main {
   padding: 2rem;
-  height: calc(100vh - 140px);
+  height: calc(100vh - 120px);
   overflow-y: auto;
 }
